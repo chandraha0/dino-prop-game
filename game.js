@@ -67,6 +67,9 @@ let centerGirlX = canvas.width/2 + 40;
 let yesCount = 0;
 let noCount = 0;
 
+let yesOffset = 0;
+let noOffset = 0;
+
 let proposalUI = document.getElementById("proposalUI");
 let yesBtn = document.getElementById("yesBtn");
 let noBtn = document.getElementById("noBtn");
@@ -114,6 +117,9 @@ dino.x = 100;
 
 yesCount = 0;
 noCount = 0;
+
+yesOffset = 0;
+noOffset = 0;
 
 proposalUI.style.display = "none";
 resultText.innerHTML = "";
@@ -397,20 +403,6 @@ frameIndex = 0;
 },120);
 
 
-// ===== RANDOM BUTTON =====
-
-function moveRandom(button){
-
-let x = Math.random()*600;
-let y = Math.random()*200;
-
-button.style.position = "absolute";
-button.style.left = x + "px";
-button.style.top = y + "px";
-
-}
-
-
 // ===== YES BUTTON =====
 
 yesBtn.onclick = function(){
@@ -419,7 +411,9 @@ yesCount++;
 
 if(yesCount < 3){
 
-moveRandom(yesBtn);
+yesOffset += 30;
+yesBtn.style.position = "relative";
+yesBtn.style.top = yesOffset + "px";
 
 }else{
 
@@ -438,7 +432,9 @@ noCount++;
 
 if(noCount < 3){
 
-moveRandom(noBtn);
+noOffset += 30;
+noBtn.style.position = "relative";
+noBtn.style.top = noOffset + "px";
 
 }else{
 
