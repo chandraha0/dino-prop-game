@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 let runFrames = [];
 let frameIndex = 0;
- 
+
 for(let i=1;i<=4;i++){
 let img = new Image();
 img.src = "assets/dino"+i+".png";
@@ -55,11 +55,6 @@ let gameFinished = false;
 // ===== CUTSCENE =====
 
 let scene = 0;
-// 0 game
-// 1 girl masuk
-// 2 dino lari
-// 3 melamar
-// 4 center
 
 let girlX = canvas.width + 100;
 
@@ -77,8 +72,6 @@ let yesBtn = document.getElementById("yesBtn");
 let noBtn = document.getElementById("noBtn");
 let resultText = document.getElementById("resultText");
 
-
-// ===== INPUT =====
 
 // ===== INPUT DESKTOP =====
 
@@ -102,12 +95,6 @@ dino.vy = dino.jump;
 }
 
 },{passive:false});
-
-if(e.code === "Space" && dino.y >= groundY - dino.height && !gameFinished){
-dino.vy = dino.jump;
-}
-
-});
 
 
 // ===== RESET =====
@@ -191,11 +178,8 @@ a.y + a.height - padding > b.y
 
 function update(){
 
-// ===== CUTSCENE =====
-
 if(gameFinished){
 
-// girl masuk
 if(scene === 1){
 
 girlX -= 3;
@@ -206,7 +190,6 @@ scene = 2;
 
 }
 
-// dino lari
 else if(scene === 2){
 
 dino.x += 3;
@@ -224,7 +207,6 @@ proposalUI.style.display = "block";
 
 }
 
-// center
 else if(scene === 4){
 
 if(dino.x > centerDinoX) dino.x -= 2;
@@ -269,9 +251,6 @@ score += 10;
 
 }
 
-
-// ===== ENDING =====
-
 if(score >= 50){
 gameFinished = true;
 obstacles = [];
@@ -288,11 +267,10 @@ function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 
-// ===== CUTSCENE DRAW =====
+// ===== CUTSCENE =====
 
 if(gameFinished){
 
-// tanah
 ctx.strokeStyle = "black";
 ctx.lineWidth = 2;
 
@@ -301,8 +279,6 @@ ctx.moveTo(0,groundY);
 ctx.lineTo(canvas.width,groundY);
 ctx.stroke();
 
-
-// girl
 ctx.drawImage(
 girlDinoImg,
 girlX,
@@ -310,9 +286,6 @@ groundY - 150,
 90,
 150
 );
-
-
-// dino
 
 if(scene < 3){
 
@@ -336,9 +309,6 @@ groundY - 120,
 
 }
 
-
-// teks proposal
-
 if(scene >= 3){
 
 ctx.font = "36px Arial";
@@ -359,9 +329,6 @@ return;
 
 
 // ===== NORMAL DRAW =====
-
-
-// dino run/jump
 
 if(dino.y < groundY - dino.height){
 
@@ -385,9 +352,6 @@ dino.height
 
 }
 
-
-// obstacles
-
 for(let obs of obstacles){
 
 ctx.drawImage(
@@ -399,9 +363,6 @@ obs.height
 );
 
 }
-
-
-// score
 
 ctx.fillStyle="black";
 ctx.font="20px Arial";
@@ -483,6 +444,6 @@ moveRandom(noBtn);
 
 resultText.innerHTML = "I'm sorry, thank you";
 
-} 
+}
 
 };
