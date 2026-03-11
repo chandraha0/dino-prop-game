@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 let runFrames = [];
 let frameIndex = 0;
-
+ 
 for(let i=1;i<=4;i++){
 let img = new Image();
 img.src = "assets/dino"+i+".png";
