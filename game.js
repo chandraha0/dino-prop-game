@@ -80,9 +80,19 @@ let resultText = document.getElementById("resultText");
 
 // ===== INPUT =====
 
+// ===== INPUT DESKTOP =====
+
 document.addEventListener("keydown", function(e){
 
-// MOBILE TOUCH JUMP
+if(e.code === "Space" && dino.y >= groundY - dino.height && !gameFinished){
+dino.vy = dino.jump;
+}
+
+});
+
+
+// ===== INPUT MOBILE =====
+
 canvas.addEventListener("touchstart", function(e){
 
 e.preventDefault();
@@ -91,15 +101,7 @@ if(dino.y >= groundY - dino.height && !gameFinished){
 dino.vy = dino.jump;
 }
 
-document.addEventListener("touchstart", function(e){
-
-if(dino.y >= groundY - dino.height && !gameFinished){
-dino.vy = dino.jump;
-}
-
 },{passive:false});
-
-});
 
 if(e.code === "Space" && dino.y >= groundY - dino.height && !gameFinished){
 dino.vy = dino.jump;
@@ -481,6 +483,6 @@ moveRandom(noBtn);
 
 resultText.innerHTML = "I'm sorry, thank you";
 
-}
+} 
 
 };
