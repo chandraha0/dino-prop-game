@@ -42,6 +42,7 @@ proposalMusic.volume = 0.6;
 loveMusic.volume = 0.7;
 
 let audioUnlocked = false;
+let gameMusicStarted = false;
 
 
 // ===== AUDIO UNLOCK =====
@@ -49,11 +50,6 @@ let audioUnlocked = false;
 function unlockAudio(){
 
 if(!audioUnlocked){
-
-gameMusic.play().then(()=>{
-gameMusic.pause();
-gameMusic.currentTime = 0;
-}).catch(()=>{});
 
 proposalMusic.play().then(()=>{
 proposalMusic.pause();
@@ -128,8 +124,9 @@ document.addEventListener("keydown", function(e){
 
 unlockAudio();
 
-if(!gameFinished && gameMusic.paused){
+if(!gameFinished && !gameMusicStarted){
 gameMusic.play();
+gameMusicStarted = true;
 }
 
 if(e.code === "Space" && dino.y >= groundY - dino.height && !gameFinished){
@@ -145,8 +142,9 @@ canvas.addEventListener("touchstart", function(e){
 
 unlockAudio();
 
-if(!gameFinished && gameMusic.paused){
+if(!gameFinished && !gameMusicStarted){
 gameMusic.play();
+gameMusicStarted = true;
 }
 
 e.preventDefault();
@@ -188,10 +186,7 @@ proposalMusic.currentTime = 0;
 loveMusic.pause();
 loveMusic.currentTime = 0;
 
-/* NOTE:
-gameMusic tidak dihentikan di sini
-agar musik tidak restart saat kalah
-*/
+/* gameMusic tidak dihentikan */
 
 }
 
