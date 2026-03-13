@@ -182,14 +182,16 @@ noOffset = 0;
 proposalUI.style.display = "none";
 resultText.innerHTML = "";
 
-gameMusic.pause();
-gameMusic.currentTime = 0;
-
 proposalMusic.pause();
 proposalMusic.currentTime = 0;
 
 loveMusic.pause();
 loveMusic.currentTime = 0;
+
+/* NOTE:
+gameMusic tidak dihentikan di sini
+agar musik tidak restart saat kalah
+*/
 
 }
 
